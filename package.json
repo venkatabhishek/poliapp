@@ -1,0 +1,19 @@
+{
+  "name": "politicssearch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "./node_modules/nodemon/bin/nodemon.js -e js,mustache server.js"
+  },
+  "author": "Abhishek Venkat",
+  "license": "ISC",
+  "dependencies": {
+    "algoliasearch": "^3.30.0",
+    "express": "^4.16.4",
+    "mustache-express": "^1.2.8"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
