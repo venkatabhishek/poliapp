@@ -123,12 +123,50 @@ app.get("/people", (req, res) => {
   res.render('people')
 })
 
+function wikiImage(url){
+    return new Promise((resolve, reject) => {
+
+
+        request(url, (error, response, body)=>{
+          if(error){
+            reject(error)
+          }
+
+          var $ = cheerio.load(body);
+
+          var img = $(".infobox img")[0];
+          resolve("https:"+img.attribs.src);
+        })
+
+        })
+}
+
 app.post("/people/search", (req, res)=>{
   index.search(req.body.keyword, function(err, content) {
-    content.hits.map(item => {
+
+    var hts = content.hits.map(item => {
       item.terms = item.terms[item.terms.length-1]
+
+      var wiki = (item.id.wikipedia).replace(" ","_");
+
+      var url = "https://en.wikipedia.org/wiki/"+wiki;
+
+
+      return wikiImage(url).then(wurl => {
+        item.imgurl = wurl;
+        return item
+      })
     })
-    res.render('people', {people: content.hits})
+
+    Promise.all(hts)
+  .then(results => {
+      res.render('people', {people: results})
+  })
+  .catch(e => {
+    console.error(e);
+  })
+
+
   });
 })
 

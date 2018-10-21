@@ -79,9 +79,10 @@ button:focus {
 }
 .card{
 	width: 400px;
-	height: 170px;
+	height: 350px;
 	width: 50%;
  margin: 0 auto;
+ display: table;
  padding: 20px;
  border-radius: 20px;
 margin-top: 40px;
@@ -124,6 +125,10 @@ border: 1px solid #6C2A6A;
 <div class="card-container">
 			{{#people}}
   <div class="card">
+		<div style="width: 50%; float: left;">
+				<img src={{imgurl}} />
+		</div>
+			<div style="width: 50%; float: left;">
 		<h1>{{name.official_full}}</h1>
 		<div style="display: inline-flex; margin-top: 22px;">
 		<span style="margin-right: 25px;"><b>Gender:</b> {{bio.gender}}</span>
@@ -138,6 +143,7 @@ border: 1px solid #6C2A6A;
 	{{terms.address}}
 </p>
 	</div>
+</div>
 {{/people}}
 </div>
 		</div>
