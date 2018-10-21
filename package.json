@@ -4,14 +4,18 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "./node_modules/nodemon/bin/nodemon.js -e js,mustache server.js"
+    "dev": "./node_modules/nodemon/bin/nodemon.js -e js,mustache server.js",
+    "start": "node server.js"
   },
   "author": "Abhishek Venkat",
   "license": "ISC",
   "dependencies": {
     "algoliasearch": "^3.30.0",
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.4",
-    "mustache-express": "^1.2.8"
+    "mustache-express": "^1.2.8",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"

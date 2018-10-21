@@ -7,13 +7,88 @@
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="http://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-<link href="default.css" rel="stylesheet" type="text/css" media="all" />
-<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
-
-<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
-
+<link href="/default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/fonts.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
+	<style>
+	#portfolio{
+		text-align:center;
+	}
+	.search {
+    color: rgb(52, 73, 94);
+    height: 42px;
+    text-decoration: none solid rgb(52, 73, 94);
+    text-size-adjust: 100%;
+    width: 212.5px;
+    column-rule-color: rgb(52, 73, 94);
+    perspective-origin: 106.25px 21px;
+    caret-color: rgb(52, 73, 94);
+    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box padding-box;
+    border: 2px solid rgb(189, 195, 199);
+    border-radius: 6px 6px 6px 6px;
+    font: normal normal 400 normal 15px / 22.005px Lato, Helvetica, Arial, sans-serif;
+    outline: rgb(52, 73, 94) none 0px;
+    padding: 8px 12px;
+    transition: border 0.25s linear 0s, color 0.25s linear 0s, background-color 0.25s linear 0s;
+}/*#INPUT_1*/
+
+.search:after {
+    box-sizing: border-box;
+    color: rgb(52, 73, 94);
+    text-decoration: none solid rgb(52, 73, 94);
+    text-size-adjust: 100%;
+    column-rule-color: rgb(52, 73, 94);
+    caret-color: rgb(52, 73, 94);
+    border: 0px none rgb(52, 73, 94);
+    font: normal normal 400 normal 15px / 22.005px Lato, Helvetica, Arial, sans-serif;
+    outline: rgb(52, 73, 94) none 0px;
+}/*#INPUT_1:after*/
+
+.search:before {
+    box-sizing: border-box;
+    color: rgb(52, 73, 94);
+    text-decoration: none solid rgb(52, 73, 94);
+    text-size-adjust: 100%;
+    column-rule-color: rgb(52, 73, 94);
+    caret-color: rgb(52, 73, 94);
+    border: 0px none rgb(52, 73, 94);
+    font: normal normal 400 normal 15px / 22.005px Lato, Helvetica, Arial, sans-serif;
+    outline: rgb(52, 73, 94) none 0px;
+}/*#INPUT_1:before*/
+
+button {
+	display: inline-block;
+	 border: none;
+	 padding: 1rem 2rem;
+	 margin: 20px;
+	 text-decoration: none;
+	 background: #0069ed;
+	 color: #ffffff;
+	 font-family: sans-serif;
+	 font-size: 1rem;
+	 cursor: pointer;
+	 text-align: center;
+	 transition: background 250ms ease-in-out,
+							 transform 150ms ease;
+	 -webkit-appearance: none;
+	 -moz-appearance: none;
+}
+button:focus {
+  outline: none
+}
+.card{
+	width: 400px;
+	height: 170px;
+	width: 50%;
+ margin: 0 auto;
+ padding: 20px;
+ border-radius: 20px;
+margin-top: 40px;
+border: 1px solid #6C2A6A;
+}
+
+	</style>
 <div id="wrapper1">
 	<div id="header-wrapper">
 		<div id="header" class="container">
@@ -42,37 +117,29 @@
 	</div>
 	<div id="wrapper3">
 		<div id="portfolio" class="container">
-			<div class="title">
-				<h2>Vivamus fermentum nibh</h2>
-				<span class="byline">Integer sit amet pede vel arcu aliquet pretium</span> </div>
-			<div class="column1">
-				<div class="box">
-					<span class="icon icon-wrench"></span>
-					<h3>Vestibulum venenatis</h3>
-					<p>Fermentum nibh augue praesent a lacus at urna congue rutrum.</p>
-					<a href="#" class="button button-small">Etiam posuere</a> </div>
-			</div>
-			<div class="column2">
-				<div class="box">
-					<span class="icon icon-trophy"></span>
-					<h3>Praesent scelerisque</h3>
-					<p>Vivamus fermentum nibh in augue praesent urna congue rutrum.</p>
-					<a href="#" class="button button-small">Etiam posuere</a> </div>
-			</div>
-			<div class="column3">
-				<div class="box">
-					<span class="icon icon-key"></span>
-					<h3>Donec dictum metus</h3>
-					<p>Vivamus fermentum nibh in augue praesent urna congue rutrum.</p>
-					<a href="#" class="button button-small">Etiam posuere</a> </div>
-			</div>
-			<div class="column4">
-				<div class="box">
-					<span class="icon icon-lock"></span>
-					<h3>Mauris vulputate dolor</h3>
-					<p>Rutrum fermentum nibh in augue praesent urna congue rutrum.</p>
-					<a href="#" class="button button-small">Etiam posuere</a> </div>
-			</div>
+			<form method="post" action="/people/search" style="margin-bottom: 20px;">
+				<input class="search" type="text" name="keyword" placeholder="Search for politicians...">
+				<button type="submit">Search</button>
+			</form>
+<div class="card-container">
+			{{#people}}
+  <div class="card">
+		<h1>{{name.official_full}}</h1>
+		<div style="display: inline-flex; margin-top: 22px;">
+		<span style="margin-right: 25px;"><b>Gender:</b> {{bio.gender}}</span>
+		 <span style="margin-right: 25px;"><b>Affiliation:</b> {{terms.party}}</span>
+		<span><b>State</b> {{terms.state}}</span>
+	</div>
+	<br />
+	<p style="margin-top: 20px;">
+{{terms.url}}
+</p>
+<p style="margin-top: 20px;">
+	{{terms.address}}
+</p>
+	</div>
+{{/people}}
+</div>
 		</div>
 	</div>
 </div>
@@ -91,5 +158,6 @@
 <div id="copyright" class="container">
 	<p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
 </div>
+
 </body>
 </html>
