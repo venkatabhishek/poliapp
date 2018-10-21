@@ -93,17 +93,20 @@ app.post("/register/search", (req, res)=>{
       console.log(error)
     }else{
       body = JSON.parse(body)
-      body.contests = body.contests.map(contest => {
-        if(contest.type == "Referendum"){
-          contest.hasOffice = false;
-          contest.showText = true;
-        }else{
-          contest.hasOffice = true;
-          contest.showText = false;
-        }
+      if(body.contests){
+        body.contests = body.contests.map(contest => {
+          if(contest.type == "Referendum"){
+            contest.hasOffice = false;
+            contest.showText = true;
+          }else{
+            contest.hasOffice = true;
+            contest.showText = false;
+          }
 
-        return contest;
-      })
+          return contest;
+        })
+      }
+
       res.render('register', {pollingLocations: body["pollingLocations"], earlyVoteSites: body["earlyVoteSites"], contests: body['contests'], show: true})
 
     }
