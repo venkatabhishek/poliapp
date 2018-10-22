@@ -8,7 +8,6 @@ const cheerio = require('cheerio')
 var app = express()
 
 
-
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
@@ -169,7 +168,6 @@ app.post("/people/search", (req, res)=>{
 
   });
 })
-
 
 app.listen(port, () =>{
   console.log(`App listening on port ${port}`)
